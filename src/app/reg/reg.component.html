@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-center w-100 align-items-center " style="height: 90vh;">
+    <div class="row w-50 border shadow bg-light">
+        <div class="col">
+          <img src="https://img.freepik.com/premium-vector/online-registration-illustration-design-concept-websites-landing-pages-other_108061-938.jpg" class="img-fluid" alt="login"/>
+        </div> 
+        <div class="col p-3">
+            <h4>Register</h4>
+            <form [formGroup]="regForm"  (ngSubmit)="handleSubmit()">
+                <input type="text"  formControlName="username"   class="form-control mb-3" placeholder="Enter your Username" name="name"/>
+                <div class="text-danger" *ngIf="regForm.get('username')?.errors && regForm.get('username')?.touched ">
+                    *invalid username
+                </div>
+                <input type="email"   formControlName="email" class="form-control mb-3" placeholder="Enter your Email ID" name="email"/>
+                <div class="text-danger" *ngIf="regForm.get('email')?.errors && regForm.get('email')?.touched ">
+                    invalid email
+                </div>
+                <input type="password"    formControlName="password" class="form-control mb-3" placeholder="Enter your password " name="pswd"/>
+                <div class="text-danger" *ngIf="regForm.get('password')?.errors && regForm.get('password')?.touched ">
+                    invalid password
+                </div>
+                <div  class="d-flex justify-content-center">
+                    <button class=" btn btn-info" type="submit" [disabled]="regForm.invalid">Register</button>
+                    <a class="btn btn-link"routerLink="/log">  already a user?</a>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
