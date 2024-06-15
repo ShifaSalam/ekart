@@ -8,15 +8,25 @@
             <a routerLink="/wish" class="btn btn-outline-dark me-3">
                 <i class="fa-regular fa-heart" style="color: #ad0065;"></i>
                 WishList
+                <span class="badge bg-dark ms-2">{{wishCount}}</span>
             </a>
             <a routerLink="/cart" class="btn btn-outline-dark me-3">
                 <i class="fa-solid fa-cart-shopping"></i>
                 Cart
+                <span class="badge bg-dark ms-2">{{cartCount}}</span>
             </a>
-            <a routerLink="/log" class="btn btn-outline-dark me-3">
+            <a routerLink="/log" class="btn btn-outline-dark me-3" *ngIf="!loginStatus">
                 <i class="fa-regular fa-user"></i>
                 Login
             </a>
+            <span *ngIf="loginStatus">
+                <i class="fa-regular fa-user"></i>
+                {{user}}
+                <button class="btn btn-outline-danger" (click)="logOut()">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    Logout
+                </button>
+            </span>
         </div>
     </div>
 </nav>

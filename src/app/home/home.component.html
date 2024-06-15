@@ -1,3 +1,4 @@
+<app-header></app-header>
 <header class=" py-3">
   <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -60,7 +61,7 @@
           </div>
           <!-- Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-between">
-            <button class="btn" ><i class="fa-solid fa-cart-plus"></i></button>
+            <button class="btn"(click)="addCartItem(i)" ><i class="fa-solid fa-cart-plus"></i></button>
             <button class="btn"(click)="addtoWishlist(i)"><i class="fa-solid fa-heart-circle-plus"></i></button>
           </div>
 

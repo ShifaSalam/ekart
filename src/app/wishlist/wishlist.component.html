@@ -1,25 +1,35 @@
+<app-header></app-header>
 <div class="container">
     <h3>Wishlist</h3>
-    <div class="row mt-5 gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        <div class="col mb-5">
+    <div class="row mt-5 gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+        *ngIf="wishitems.length>0;else elsedata">
+        <div class="col mb-5" *ngFor="let i of wishitems">
             <div class="card h-100">
                 <!-- Product image-->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" routerLink="/detail/1" style="cursor: pointer;" alt="..." />
+                <img class="card-img-top" src={{i.image}} routerLink="/detail/1" style="cursor: pointer;" height="300px"
+                    alt="..." />
                 <!-- Product details-->
                 <div class="card-body p-4">
                     <div class="text-center">
                         <!-- Product name-->
-                        <h5 class="fw-bolder">Fancy Product</h5>
+                        <h5 class="fw-bolder">{{i.title}}</h5>
                         <!-- Product price-->
-                        $40.00 - $80.00
+                        {{i.price|currency}}
                     </div>
                 </div>
                 <!-- Product actions-->
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-between">
-                    <button class="btn"><i class="fa-solid fa-cart-plus"></i></button>
-                    <button class="btn"><i class="fa-solid fa-heart-circle-plus"></i></button>
+                    <button class="btn" (click)="addCartItem(i)">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                    <button class="btn" (click)="deleteWishItem(i._id)">
+                        <i class="fa-solid fa-heart-circle-minus"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    <ng-template #elsedata>
+        <h1 class="text-danger text-center">No wishlist items..</h1>
+    </ng-template>
 </div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient ,HttpHeaders} from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,27 @@ export class ApiService {
 
   base_url:any="http://localhost:3000"
 
-  constructor(private http:HttpClient) { }
+  wishCountBS=new BehaviorSubject(0)
+  cartCountBS=new BehaviorSubject(0)
+
+  constructor(private http:HttpClient) { 
+    if(sessionStorage.getItem('token')){
+      this.getWishlistItemCount()
+      this.getCartItemCount()
+    }
+  }
+
+  getWishlistItemCount(){
+    this.getWishlist().subscribe((res:any)=>{
+      this.wishCountBS.next(res.length)
+    })
+  }
+
+  getCartItemCount(){
+    this.getCartItem().subscribe((res:any)=>{
+      this.cartCountBS.next(res.length)
+    })
+  }
 
   // PRODUCTS
 
@@ -46,4 +67,39 @@ export class ApiService {
   getWishlist(){
     return this.http.get(`${this.base_url}/getwish`,this.appendTokenToHeader())
   }
+
+  removeWish(id:any){
+    return this.http.delete(`${this.base_url}/removewish/${id}`,this.appendTokenToHeader())
+  }
+
+  // CART
+
+  addToCart(data:any){
+    return this.http.post(`${this.base_url}/addcart`,data,this.appendTokenToHeader())
+  }
+
+  getCartItem(){
+    return this.http.get(`${this.base_url}/getcart`,this.appendTokenToHeader())
+  }
+
+  removeCartItem(id:any){
+    return this.http.delete(`${this.base_url}/removecart/${id}`,this.appendTokenToHeader())
+  }
+
+  incCartQnty(id:any){
+    return this.http.get(`${this.base_url}/inccart/${id}`,this.appendTokenToHeader())
+  }
+
+  decCartQnty(id:any){
+    return this.http.get(`${this.base_url}/deccart/${id}`,this.appendTokenToHeader())
+  }
+
+  emptyCart(){
+    return this.http.delete(`${this.base_url}/emptycart`,this.appendTokenToHeader())
+  }
+
+  isLoggedIn(){
+    return !!sessionStorage.getItem('token')
+  }
+
 }
