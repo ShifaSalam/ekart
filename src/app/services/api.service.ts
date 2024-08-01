@@ -7,10 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ApiService {
 
-  base_url:any="http://localhost:3000"
+  base_url:any="https://e-kart-server-z638.onrender.com"
 
   wishCountBS=new BehaviorSubject(0)
   cartCountBS=new BehaviorSubject(0)
+  searchKeyBS=new BehaviorSubject("")
 
   constructor(private http:HttpClient) { 
     if(sessionStorage.getItem('token')){
@@ -40,6 +41,8 @@ export class ApiService {
   singleProduct(id:any){
     return this.http.get(`${this.base_url}/single-product/${id}`)
   }
+
+  // AUTHENTICATION
 
   userRegister(data:any){
     return this.http.post(`${this.base_url}/register`,data)

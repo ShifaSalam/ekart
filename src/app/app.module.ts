@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     CartComponent,
     WishlistComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

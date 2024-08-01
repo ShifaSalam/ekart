@@ -11,7 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 export class HomeComponent implements OnInit{
 
   products:any=[]
-  constructor(private api:ApiService,private toastr:ToastrService){}
+  searchkey:any=""
+  constructor(private api:ApiService,private toastr:ToastrService){
+    this.api.searchKeyBS.subscribe((res:any)=>{
+      this.searchkey=res
+    })
+  }
 
   ngOnInit():void{
     this.api.allProducts().subscribe({

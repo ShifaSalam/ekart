@@ -4,7 +4,11 @@
             <i class="fa-brands fa-shopify"></i>
             Ekart
         </span>
-        <div>
+        <div class="d-flex">
+            <div class="d-flex me-3">
+                <input type="text" #searchkey class="form-control" aria-label="search" placeholder="Search">
+                <button class="border-0 ms-3" style="background-color: cadetblue;" (click)="searchInput(searchkey.value)"><i class=" fa-solid fa-magnifying-glass"></i></button>
+            </div>
             <a routerLink="/wish" class="btn btn-outline-dark me-3">
                 <i class="fa-regular fa-heart" style="color: #ad0065;"></i>
                 WishList

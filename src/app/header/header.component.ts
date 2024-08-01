@@ -49,4 +49,8 @@ export class HeaderComponent implements OnInit {
       this.toastr.success("Logout Successfull!!")
       this.router.navigateByUrl('/log')
     }
+
+    searchInput(searchKey:any){
+      this.api.searchKeyBS.next(searchKey)
+    }
 }
